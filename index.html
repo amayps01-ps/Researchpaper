@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}ResearchAI – Discover Research{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">AI-POWERED ACADEMIC DISCOVERY</span>
+    <h1>Find the research that moves your ideas forward.</h1>
+    <p>Search research topics and discover related academic papers with TF-IDF and cosine similarity.</p>
+    <div class="hero-actions">
+      {% if session.get('user_id') %}
+        <a class="button" href="{{ url_for('dashboard') }}">Explore papers</a>
+      {% else %}
+        <a class="button" href="{{ url_for('register') }}">Get started</a>
+        <a class="button secondary" href="{{ url_for('login') }}">Login</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <div class="book-icon">✦</div>
+    <div class="floating-card card-a">Machine Learning</div>
+    <div class="floating-card card-b">Research Discovery</div>
+    <div class="floating-card card-c">AI Recommendations</div>
+  </div>
+</section>
+<section class="features">
+  <article class="feature"><div class="feature-icon">⌕</div><h3>Smart Search</h3><p>Search by topic, keyword, or research interest.</p></article>
+  <article class="feature"><div class="feature-icon">✧</div><h3>Relevant Papers</h3><p>Rank matching papers by text similarity.</p></article>
+  <article class="feature"><div class="feature-icon">▤</div><h3>Simple Workspace</h3><p>Keep your research discovery in one place.</p></article>
+</section>
+<p class="small-note">This starter project includes demonstration paper records. Verify bibliographic details before using them in academic work.</p>
+{% endblock %}

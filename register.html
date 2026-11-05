@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Register – ResearchAI{% endblock %}
+{% block content %}
+<section class="auth-card">
+  <span class="eyebrow">CREATE YOUR ACCOUNT</span>
+  <h1>Join ResearchAI</h1>
+  <p class="muted">Create an account to start exploring.</p>
+  <form method="POST">
+    <label>Full name</label>
+    <input type="text" name="name" placeholder="Your name" autocomplete="name" maxlength="80" required>
+    <label>Email address</label>
+    <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
+    <label>Confirm password</label>
+    <input type="password" name="confirm_password" placeholder="Enter password again" minlength="8" autocomplete="new-password" required>
+    <button class="button full" type="submit">Create account</button>
+  </form>
+  <div class="auth-links"><span>Already registered? <a href="{{ url_for('login') }}">Login</a></span></div>
+</section>
+{% endblock %}

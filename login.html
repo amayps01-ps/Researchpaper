@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Login – ResearchAI{% endblock %}
+{% block content %}
+<section class="auth-card">
+  <span class="eyebrow">WELCOME BACK</span>
+  <h1>Login to ResearchAI</h1>
+  <p class="muted">Continue discovering research papers.</p>
+  <form method="POST">
+    <label>Email address</label>
+    <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+    <button class="button full" type="submit">Login</button>
+  </form>
+  <div class="auth-links"><a href="{{ url_for('forgot_password') }}">Forgot password?</a><span>New here? <a href="{{ url_for('register') }}">Create account</a></span></div>
+</section>
+{% endblock %}

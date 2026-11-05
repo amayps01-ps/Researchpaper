@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="max-width:900px; margin:30px auto; padding:20px;">
+
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h1>ResearchAI</h1>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <h2>Welcome to ResearchAI</h2>
+
+    <p>Find research papers based on your interests.</p>
+
+    <form method="POST" action="{{ url_for('dashboard') }}"
+          style="margin:25px 0; display:flex; gap:10px; flex-wrap:wrap;">
+
+        <input
+            type="text"
+            name="query"
+            value="{{ query }}"
+            placeholder="Enter research topic..."
+            required
+            style="flex:1; min-width:200px; padding:14px; border:1px solid #999; border-radius:8px;"
+        >
+
+        <button type="submit"
+                style="padding:14px 25px; background:#AFDDE5; border:0; border-radius:8px; cursor:pointer;">
+            Search Papers
+        </button>
+    </form>
+
+    {% if results %}
+
+        <h2>Recommended Research Papers</h2>
+
+        {% for paper in results %}
+
+            <article class="paper-card"
+                     style="padding:20px; margin:15px 0; background:#f5fbfc; border:1px solid #AFDDE5; border-radius:12px;">
+
+                <div class="paper-top">
+                    <span class="paper-year">{{ paper.year }}</span>
+                    <span class="score">{{ paper.score }}% text similarity</span>
+                </div>
+
+                <h3>{{ paper.title }}</h3>
+
+                <p class="authors">{{ paper.authors }}</p>
+
+                <p>{{ paper.abstract }}</p>
+
+                {% if paper.paper_url %}
+                    <a href="{{ paper.paper_url }}"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Read Research Paper
+                    </a>
+               {% else %}
+                 <a href="https://scholar.google.com/scholar?q={{ paper.title | urlencode }}"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                   Find Paper on Google Scholar
+                 </a>
+                {% endif %}
+
+            </article>
+
+        {% endfor %}
+
+    {% elif query %}
+
+        <p>No research papers found. Try another topic.</p>
+
+    {% else %}
+
+        <p>Enter a topic above and click Search Papers to get recommendations.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
